@@ -1,0 +1,642 @@
+{
+	"info": {
+		"_postman_id": "f929f4af-c052-4fe3-8e7f-1d8a030ce12f",
+		"name": "Wrimble APIs",
+		"description": "A collection of the API used for the Wrimble rails app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Generate JWT 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/auth/getjwt?email=test1@test.com&password=password1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"getjwt"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "test1@test.com"
+								},
+								{
+									"key": "password",
+									"value": "password1"
+								}
+							]
+						},
+						"description": "Generate a JWToken for User 1 ( only works if the user hasn't been modified )"
+					},
+					"response": []
+				},
+				{
+					"name": "Generate JWT 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/auth/getjwt?email=test2@test.com&password=password2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"getjwt"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "test2@test.com"
+								},
+								{
+									"key": "password",
+									"value": "password2"
+								}
+							]
+						},
+						"description": "Generate a JWToken for User 2 ( only works if the user hasn't been modified )"
+					},
+					"response": []
+				}
+			],
+			"description": "The requests made to generate tokens for specified users",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Database",
+			"item": [
+				{
+					"name": "Show all boards",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.o81b5ySuWFM_yzij68Yl3vp0UC3ehEx9NPUFxsIWFcs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards"
+							]
+						},
+						"description": "A request that reveals the boards owned by a specified user ( requires the users JWT in order to proceed )"
+					},
+					"response": []
+				},
+				{
+					"name": "Show specific board",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards",
+								"2"
+							]
+						},
+						"description": "A request that reveals a specified board if the authorized user has access ( requires the users JWT in order to proceed )"
+					},
+					"response": []
+				},
+				{
+					"name": "Create board",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Groceries",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Fruits from the supermarket",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards",
+								""
+							]
+						},
+						"description": "A request that creates a board and links it to a user ( requires the users JWT in order to proceed )"
+					},
+					"response": []
+				},
+				{
+					"name": "Update board",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Groceries",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Fruits from the supermarket",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards",
+								"2"
+							]
+						},
+						"description": "A request that updates a board if the authorized user has access ( requires the users JWT in order to proceed )"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete board",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Groceries",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Fruits from the supermarket",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards",
+								"2"
+							]
+						},
+						"description": "A request that deletes a board if the user has access to it ( requires the users JWT in order to proceed )"
+					},
+					"response": []
+				},
+				{
+					"name": "Show columns for a board",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards/6/columns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards",
+								"6",
+								"columns"
+							]
+						},
+						"description": "A request that reveals the columns of a board if the user has access to it ( requires the users JWT in order to proceed )"
+					},
+					"response": []
+				},
+				{
+					"name": "Show stories for a column",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards/6/columns/17/stories/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards",
+								"6",
+								"columns",
+								"17",
+								"stories",
+								""
+							]
+						},
+						"description": "Shows the tasks from a column if the user has access to the parent board"
+					},
+					"response": []
+				},
+				{
+					"name": "Update story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/data/boards/5/columns/14/stories/233?task=plant tree&info=just plant a tree&order=1&tag=eco&status=active&due=Date.now",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"data",
+								"boards",
+								"5",
+								"columns",
+								"14",
+								"stories",
+								"233"
+							],
+							"query": [
+								{
+									"key": "task",
+									"value": "plant tree"
+								},
+								{
+									"key": "info",
+									"value": "just plant a tree"
+								},
+								{
+									"key": "order",
+									"value": "1"
+								},
+								{
+									"key": "tag",
+									"value": "eco"
+								},
+								{
+									"key": "status",
+									"value": "active"
+								},
+								{
+									"key": "due",
+									"value": "Date.now"
+								}
+							]
+						},
+						"description": "Updates the story if the user has access to the board"
+					},
+					"response": []
+				}
+			],
+			"description": "Requests to access the database",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Linking",
+			"item": [
+				{
+					"name": "Link board to user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "5",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/link/entries/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"link",
+								"entries",
+								"6"
+							]
+						},
+						"description": "Links the selected board to the current user"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove user - board link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/link/entries/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"link",
+								"entries",
+								"2"
+							]
+						},
+						"description": "Removes the selected board from the current user"
+					},
+					"response": []
+				},
+				{
+					"name": "Assign task to user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.o81b5ySuWFM_yzij68Yl3vp0UC3ehEx9NPUFxsIWFcs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/link/tasks/319",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"link",
+								"tasks",
+								"319"
+							]
+						},
+						"description": "Give a task to the connected user"
+					},
+					"response": []
+				},
+				{
+					"name": "Clear user's tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.pnWxi-Xcuep3Svb-7xznyRalKDB1EK54nrWsf70dmD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/link/tasks/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"link",
+								"tasks",
+								"0"
+							]
+						},
+						"description": "Destroy all of the connected user's tasks\n(Take a vacation :))"
+					},
+					"response": []
+				}
+			],
+			"description": "Requests to give access or assign tasks to users",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ca7e4551-5506-4f1f-94fd-548883d22bb1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c8002ba-b828-454f-a213-307030273e31",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "66d648a2-c7a7-4bc6-a8a1-257cec629d71",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1418d1f9-62f4-4288-ada1-1cd37e562a8d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
